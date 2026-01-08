@@ -8,6 +8,11 @@ public class DynamicStringList implements StringList {
 
     @Override
     public String get(int index) {
-        return "";
+        return strList[index];
+    }
+
+    @Override
+    public void set(int index, String value){
+        strList[index] = value;
     }
 }
