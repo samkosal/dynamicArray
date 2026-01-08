@@ -15,4 +15,10 @@ public class DynamicStringList implements StringList {
     public void set(int index, String value){
         strList[index] = value;
     }
+
+    @Override
+    public void add(String value){
+        int length = strList.length - 1;
+        strList[length] = value;
+    }
 }

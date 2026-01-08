@@ -3,7 +3,7 @@
  */
 public interface StringList {
 
-  /**
+  /**   
    * Retrieves the string at the specified index in the list.
    *
    * @param index the index of the string to retrieve.
