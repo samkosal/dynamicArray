@@ -50,4 +50,24 @@ public class DynamicStringList implements StringList {
 
         return removed;
     }
+
+    /**
+    * Returns the number of strings currently in the list.
+    *
+    * @return the size of the list.
+    */
+    @Override
+    public int size(){
+        return this.strList.length;
+    }
+
+    /**
+    * Returns the current capacity of the list (i.e., the number of elements it can hold before resizing).
+    *
+    * @return the capacity of the list.
+    */
+    public int capacity(){
+        return this.arrLength;
+    }
+
 }
