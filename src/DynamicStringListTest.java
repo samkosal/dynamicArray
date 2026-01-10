@@ -38,7 +38,7 @@ public class DynamicStringListTest {
 
         list.add("watermelon");
 
-        String result = list.get(3);
+        String result = list.get(4);
 
         // replaced value at the from "orange" to "watermelon", should return "watermelon"
         assertEquals("watermelon", result);
@@ -47,10 +47,10 @@ public class DynamicStringListTest {
     @Test
     public void testRemove() {
         DynamicStringList list = new DynamicStringList();
-        list.set(0, "apple");
-        list.set(1, "banana");
-        list.set(2, "cherry");
-        list.set(3, "orange");
+        list.add("apple");
+        list.add("banana");
+        list.add("cherry");
+        list.add("orange");
         
 
         String removed = list.remove(1);
@@ -64,22 +64,13 @@ public class DynamicStringListTest {
     @Test
     public void testsize() {
         DynamicStringList list = new DynamicStringList();
-
+        list.add("apple");
+        list.add("banana");
+        list.add("cherry");
+        list.add("orange");
         int result = list.size();
 
         // size of the actual list should be 4
         assertEquals(4, result);
     }
-
-    // @Test
-    // public void testcapacity() {
-    //     DynamicStringList list = new DynamicStringList();
-
-    //     int result = list.capacity();
-
-    //     // this is temporary test, we need to get remove working before we can truly test capacity function.
-    //     assertEquals(3, result);
-    // }
-
-    //TODO: "keeping going using this format ^, i can only do one, cuz i got work, ill be back to do more" -sam
 }

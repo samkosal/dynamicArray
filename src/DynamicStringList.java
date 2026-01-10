@@ -5,7 +5,7 @@ public class DynamicStringList implements StringList {
 
     public DynamicStringList(){
         this.strList = new String[4];
-        this.arrLength = 4;
+        this.arrLength = 0;
     }
 
     @Override
@@ -21,6 +21,14 @@ public class DynamicStringList implements StringList {
         if (index < 0 || index > strList.length - 1){
             throw new IndexOutOfBoundsException("Your index is does not exist in the list.");
         }
+        //if the spot is null, that means the user added a string to a spot that was not assigned
+        //yet, and therefore needs to be treated like an add operation where we increment arrLength;
+        if (strList[index] == null){
+            strList[index] = value;
+            arrLength++;
+            return;
+        }
+
         strList[index] = value;
     }
 
@@ -36,8 +44,8 @@ public class DynamicStringList implements StringList {
             //we can overwrite strList with newList, increasing the size by 4.
             strList = newList;
         }
-        arrLength++;
         strList[arrLength] = value;
+        arrLength++;
     }
     
     /**
@@ -49,16 +57,15 @@ public class DynamicStringList implements StringList {
     */
     @Override
     public String remove(int index){
+        if(index < 0 || index > this.arrLength - 1){
+            throw new IndexOutOfBoundsException(index + " is out of position");
+        }
+        
         String removed = strList[index];
 
-        if(index < strList.length || index > strList.length){
-            throw new IndexOutOfBoundsException(index + "is out of position");
+        for (int i = index; i < strList.length; i++) {
+            strList[i] = i + 1 < strList.length ? strList[i + 1] : null;
         }
-
-        for (int i = index; i < strList.length - 1; i++) {
-            strList[i] = strList[i + 1];
-        }
-        this.arrLength--;
 
         return removed;
     }
@@ -80,7 +87,7 @@ public class DynamicStringList implements StringList {
     */
     public int capacity(){
         //gotta return the whole size of the array, including the unassigned ones
-        return strList.length;
+        return this.strList.length;
     }
 
 }
