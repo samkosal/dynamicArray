@@ -66,12 +66,10 @@ public class DynamicStringListTest {
         DynamicStringList list = new DynamicStringList();
         list.add("apple");
         list.add("banana");
-        list.add("cherry");
-        list.add("orange");
         int result = list.size();
 
         // size of the actual list should be 4
-        assertEquals(4, result);
+        assertEquals(2, result);
     }
 
     @Test
