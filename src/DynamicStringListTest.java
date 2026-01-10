@@ -73,4 +73,20 @@ public class DynamicStringListTest {
         // size of the actual list should be 4
         assertEquals(4, result);
     }
+
+    @Test
+    public void testCapacity(){
+        //this test should return a capacity of 8
+        StringList list = new DynamicStringList();
+        list.add("apple");
+        list.add("banana");
+        list.add("cherry");
+        list.add("orange");
+        list.add("watermelon");
+
+        int result = list.capacity();
+
+        //after adding the 5th item, the list should have increased in size by 4 items
+        assertEquals(8, result);
+    }
 }
