@@ -27,7 +27,7 @@ public class DynamicStringList implements StringList {
         int length = strList.length - 1;
         strList[length] = value;
     }
-
+    
     /**
     * Removes the string at the specified index from the list.
     *
