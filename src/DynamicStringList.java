@@ -8,24 +8,36 @@ public class DynamicStringList implements StringList {
         this.arrLength = 4;
     }
 
-    public int getLength(){
-        return arrLength;
-    }
-
     @Override
     public String get(int index) {
+        if (index < 0 || index > strList.length - 1){
+            throw new IndexOutOfBoundsException("Your index is does not exist in the list.");
+        }
         return strList[index];
     }
 
     @Override
     public void set(int index, String value){
+        if (index < 0 || index > strList.length - 1){
+            throw new IndexOutOfBoundsException("Your index is does not exist in the list.");
+        }
         strList[index] = value;
     }
 
     @Override
     public void add(String value){
-        int length = strList.length - 1;
-        strList[length] = value;
+        //if arrLength == strList.length, then we need to extend it.
+        if (arrLength == strList.length){
+            String[] newList = new String[strList.length + 4];
+            for (int i = 0; i < strList.length; i++){
+                newList[i] = strList[i];
+            }
+            //now that we've transferred all of the same contents to newList,
+            //we can overwrite strList with newList, increasing the size by 4.
+            strList = newList;
+        }
+        arrLength++;
+        strList[arrLength] = value;
     }
     
     /**
@@ -58,7 +70,7 @@ public class DynamicStringList implements StringList {
     */
     @Override
     public int size(){
-        return this.strList.length;
+        return arrLength;
     }
 
     /**
@@ -67,7 +79,8 @@ public class DynamicStringList implements StringList {
     * @return the capacity of the list.
     */
     public int capacity(){
-        return this.arrLength;
+        //gotta return the whole size of the array, including the unassigned ones
+        return strList.length;
     }
 
 }
